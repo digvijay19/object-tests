@@ -8,7 +8,7 @@ public class StringTests {
         String a = "Digvijay";
         String b = "Dubeji";
         boolean actual = a.equals(b);
-        assertEquals(actual,false);
+        assertEquals(actual, false);
     }
 
     @Test
@@ -16,7 +16,7 @@ public class StringTests {
         String a = "Digvijay";
         String b = "Digvijay";
         boolean actual = a.equals(b);
-        assertEquals(actual,true);
+        assertEquals(actual, true);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class StringTests {
         String a = new String("Digvijay");
         String b = new String("Digvijay");
         boolean actual = a.equals(b);
-        assertEquals(actual,true);
+        assertEquals(actual, true);
     }
 
     @Test
@@ -32,14 +32,15 @@ public class StringTests {
         String a = new String("Digvijay");
         String b = new String("Dubeji");
         boolean actual = a.equals(b);
-        assertEquals(actual,false);
+        assertEquals(actual, false);
     }
+
     @Test
     public void test_one_string_object_and_one_string_literal() throws Exception {
         String a = new String("Digvijay");
         String b = "Dubeji";
         boolean actual = a.equals(b);
-        assertEquals(actual,false);
+        assertEquals(actual, false);
     }
 
     @Test
@@ -47,6 +48,6 @@ public class StringTests {
         String a = new String("Digvijay");
         String b = "Digvijay";
         boolean actual = a.equals(b);
-        assertEquals(actual,true);
+        assertEquals(actual, true);
     }
 }
