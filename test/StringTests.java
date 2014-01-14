@@ -34,4 +34,19 @@ public class StringTests {
         boolean actual = a.equals(b);
         assertEquals(actual,false);
     }
+    @Test
+    public void test_one_string_object_and_one_string_literal() throws Exception {
+        String a = new String("Digvijay");
+        String b = "Dubeji";
+        boolean actual = a.equals(b);
+        assertEquals(actual,false);
+    }
+
+    @Test
+    public void test_one_string_object_and_one_string_literal_when_they_are_same() throws Exception {
+        String a = new String("Digvijay");
+        String b = "Digvijay";
+        boolean actual = a.equals(b);
+        assertEquals(actual,true);
+    }
 }
