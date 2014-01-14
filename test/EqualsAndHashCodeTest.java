@@ -1,6 +1,10 @@
+import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -116,5 +120,33 @@ public class EqualsAndHashCodeTest {
         people.put(guru1, guru1);
         int actual = people.size();
         assertEquals(2, actual);
+    }
+    //-----------------set test--------------------------
+
+    @Test
+    public void test_insert_in_set_overwrites_duplicate_data_using_equals_and_hashcode() {
+        Set<Person> people = new HashSet<Person>();
+        people.add(digvijay);
+        people.add(digvijay1);
+        int actual = people.size();
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void test_inserts_same_person_in_set_when_wrong_implementation_of_equals() {
+        Set<WrongPerson> people = new HashSet<WrongPerson>();
+        people.add(guru);
+        people.add(guru1);
+        int actual = people.size();
+        assertEquals(2, actual);
+    }
+
+    //---------------Array List-------------------------
+
+    @Test(expected = ClassCastException.class)
+    public void test_insert_in_ArrayList_throws_exception() {
+        ArrayList list = new ArrayList<Person>();
+        Assert.assertTrue(list.add("hello"));
+        Person p1 = (Person) list.get(0);
     }
 }
