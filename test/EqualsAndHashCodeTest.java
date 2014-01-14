@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static junit.framework.Assert.assertEquals;
 
 public class EqualsAndHashCodeTest {
@@ -89,5 +91,30 @@ public class EqualsAndHashCodeTest {
         WrongPerson p2 = new WrongPerson("Dig", 29);
         boolean actual = p1.hashCode() == p2.hashCode();
         assertEquals(false, actual);
+    }
+
+    //-----------------hashmap test--------------------------
+
+    Person digvijay = new Person("Digvijay", 19);
+    Person digvijay1 = new Person("Digvijay", 19);
+    WrongPerson guru = new WrongPerson("Guru", 22);
+    WrongPerson guru1 = new WrongPerson("Guru", 22);
+
+    @Test
+    public void test_insert_in_hashmap_overwrites_duplicate_data_using_equals_and_hashcode() {
+        HashMap<Person, Person> map1 = new HashMap<Person, Person>();
+        map1.put(digvijay, digvijay);
+        map1.put(digvijay1, digvijay1);
+        int actual = map1.size();
+        assertEquals(1, actual);
+    }
+
+    @Test
+    public void test_inserts_same_person_when_wrong_implementation_of_equals() {
+        HashMap<WrongPerson, WrongPerson> people = new HashMap<WrongPerson, WrongPerson>();
+        people.put(guru, guru);
+        people.put(guru1, guru1);
+        int actual = people.size();
+        assertEquals(2, actual);
     }
 }
