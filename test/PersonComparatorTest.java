@@ -7,9 +7,8 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
-@SuppressWarnings("unchecked")
 public class PersonComparatorTest {
-    public static List addPeopleToList(Person... persons) {
+    public static List<Person> addPeopleToList(Person... persons) {
         List<Person> people = new ArrayList<Person>();
         Collections.addAll(people, persons);
         return people;
@@ -37,6 +36,28 @@ public class PersonComparatorTest {
     }
 
     @Test
+    public void test_comparator_of_person_with_of_name_in_reverse_order() {
+        List<Person> people = addPeopleToList(digvijay, kunal, swamiji);
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return p2.getName().compareTo(p1.getName());
+            }
+        });
+        String actual;
+        String expected;
+        expected = people.get(0).getName();
+        actual = "Swamiji";
+        assertEquals(expected, actual);
+        expected = people.get(1).getName();
+        actual = "Kunal";
+        assertEquals(expected, actual);
+        expected = people.get(2).getName();
+        actual = "Digvijay";
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void test_comparator_of_person_with_age() {
         List<Person> people = addPeopleToList(digvijay, kunal, swamiji);
         Collections.sort(people, new Comparator<Person>() {
@@ -54,6 +75,28 @@ public class PersonComparatorTest {
         expected = people.get(1).getName();
         assertEquals(expected, actual);
         actual = "Kunal";
+        expected = people.get(2).getName();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void test_comparator_of_person_with_age_in_reverse_order() {
+        List<Person> people = addPeopleToList(digvijay, kunal, swamiji);
+        Collections.sort(people, new Comparator<Person>() {
+            @Override
+            public int compare(Person p1, Person p2) {
+                return p2.getAge() - p1.getAge();
+            }
+        });
+        String actual;
+        String expected;
+        actual = "Kunal";
+        expected = people.get(0).getName();
+        assertEquals(expected, actual);
+        actual = "Digvijay";
+        expected = people.get(1).getName();
+        assertEquals(expected, actual);
+        actual = "Swamiji";
         expected = people.get(2).getName();
         assertEquals(expected, actual);
     }
