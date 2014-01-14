@@ -58,4 +58,36 @@ public class EqualsAndHashCodeTest {
         boolean actual = p1.equals(p2);
         assertEquals(true, actual);
     }
+
+    @Test
+    public void test_two_Wrong_persons_are_not_equal_even_when_name_and_age_is_same() throws Exception {
+        WrongPerson p1 = new WrongPerson("Digvijay", 20);
+        WrongPerson p2 = new WrongPerson("Digvijay", 20);
+        boolean actual = p1.equals(p2);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    public void test_two_Wrong_persons_are_not_equal_when_name_and_age_is_not_same() throws Exception {
+        WrongPerson p1 = new WrongPerson("Dubeji", 17);
+        WrongPerson p2 = new WrongPerson("Digvijay", 19);
+        boolean actual = p1.equals(p2);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    public void test_two_Wrong_persons_have_different_hashcode_even_when_name_and_age_is_same() throws Exception {
+        WrongPerson p1 = new WrongPerson("Digvijay", 19);
+        WrongPerson p2 = new WrongPerson("Digvijay", 19);
+        boolean actual = p1.hashCode() == p2.hashCode();
+        assertEquals(false, actual);
+    }
+
+    @Test
+    public void test_two_Wrong_persons_have_different_hashcode_when_name_and_age_is_different() throws Exception {
+        WrongPerson p1 = new WrongPerson("Digvijay", 19);
+        WrongPerson p2 = new WrongPerson("Dig", 29);
+        boolean actual = p1.hashCode() == p2.hashCode();
+        assertEquals(false, actual);
+    }
 }
