@@ -1,0 +1,35 @@
+<project name="expression-evaluator" default = "test">
+
+    <target name = "clean" description="cleans all the extra files generated for building.">
+        <delete dir="build"/>
+    </target>
+
+    <target name = "compile">
+        <mkdir dir = "build"/>
+        <mkdir dir = "build/classes"/>
+        <mkdir dir = "build/classes/src"/>
+        <javac srcdir ="src" destdir ="build/classes/src" includeantruntime = "false"/>
+    </target>
+
+    <target name = "compileTest" depends = "compile">
+        <mkdir dir = "build/classes/test"/>
+        <javac classpath="dependencies/test/junit-4.10.jar;build/classes/src" srcdir ="test" destdir ="build/classes/test" includeantruntime = "false"/>
+    </target>
+
+    <target name = "test" depends = "compileTest">
+        <junit haltonfailure="yes">
+            <classpath>
+                <pathelement location="build/classes/src" />
+                <pathelement location="build/classes/test" />
+                <pathelement location="dependencies/test/junit-4.10.jar"/>
+            </classpath>
+            <batchtest>
+                <fileset dir="test">
+                    <include name="**/*Test*" />
+                </fileset>
+            </batchtest>
+            <formatter type = "brief" usefile = "false"/>
+        </junit>
+    </target>
+
+</project>
